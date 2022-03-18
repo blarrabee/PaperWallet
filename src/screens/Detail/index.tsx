@@ -58,14 +58,14 @@ function Content(props: {
     let html = ''
     // @ts-ignore
     pubicKeyRef.toDataURL((data: any) => {
-      html = `<h1>Public key</h1>`
+      html = '<h1>Public key</h1>'
       html = `${html}<h2>${publicKey}</h2>`
       html = `${html}<img src="data:image/png;base64,${data}" /><br />`
       // @ts-ignore
-      privateKeyRef.toDataURL((data: any) => {
+      privateKeyRef.toDataURL((nextData: any) => {
         html = `${html}<h1>Private key</h1>`
         html = `${html}<h2>${privateKey}</h2>`
-        html = `${html}<img src="data:image/png;base64,${data}" />`
+        html = `${html}<img src="data:image/png;base64,${nextData}" />`
         finalizePrint(html)
       })
     })
@@ -78,11 +78,11 @@ function Content(props: {
       directory: 'Documents',
       width: 612,
       height: 900,
-    };
+    }
 
     const file = await RNHTMLtoPDF.convert(options)
     // console.log(file.filePath);
-    console.log(file.filePath);
+    console.log(file.filePath)
     Share.open({
       title: 'Result',
       message: '',
